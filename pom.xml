@@ -89,14 +89,10 @@
     </modules>
 
     <scm>
-        <connection>scm:git:git://github.com/TimMoore/mojo-executor.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/TimMoore/mojo-executor.git</developerConnection>
+        <connection>scm:git:git://github.com/cschoell/mojo-executor.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/cschoell/mojo-executor.git</developerConnection>
         <url>https://github.com/TimMoore/mojo-executor</url>
     </scm>
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/TimMoore/mojo-executor/issues</url>
-    </issueManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
