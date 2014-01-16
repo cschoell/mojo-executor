@@ -17,6 +17,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
     <groupId>org.twdata.maven</groupId>
     <artifactId>mojo-executor-parent</artifactId>
     <version>1.5.2-SNAPSHOT</version>
@@ -83,29 +89,18 @@
     </modules>
 
     <scm>
-        <connection>scm:git:git://github.com/cschoell/mojo-executor.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/cschoell/mojo-executor.git</developerConnection>
-        <url>https://github.com/cschoell/mojo-executor</url>
+        <connection>scm:git:git://github.com/TimMoore/mojo-executor.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/TimMoore/mojo-executor.git</developerConnection>
+        <url>https://github.com/TimMoore/mojo-executor</url>
     </scm>
-
-  <distributionManagement>
-    <snapshotRepository>
-      <id>nexus-snapshots</id>
-      <name>Nexus Staging Repo</name>
-      <url>http://${nexus.host}/nexus/content/repositories/snapshots/</url>
-      <uniqueVersion>false</uniqueVersion>
-    </snapshotRepository>
-    <repository>
-      <id>nexus-releases</id>
-      <name>Nexus Release Repo</name>
-      <url>http://${nexus.host}/nexus/content/repositories/2ndparty/</url>
-    </repository>
-  </distributionManagement>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/TimMoore/mojo-executor/issues</url>
+    </issueManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.version>3.0</maven.version>
-        <nexus.host>10.224.88.61</nexus.host>
     </properties>
 
     <dependencyManagement>
@@ -244,4 +239,32 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.2</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
